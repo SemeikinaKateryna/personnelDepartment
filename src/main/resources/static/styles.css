@@ -1,0 +1,20 @@
+.left50{
+    width: 50%;
+    margin-left: 70px;
+}
+
+.right50{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin-left: 40px;
+}
+
+.left-right{
+    top:0;
+    position: relative;
+}
+
+a{
+    color: black;
+}

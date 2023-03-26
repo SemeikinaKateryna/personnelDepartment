@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <th:block th:include="/navbar"></th:block>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="left-right">
+        <div class="left50">
+        <h3>Employee # <span th:text="${employee.id}"></span></h3><br>
+        <h4 th:text="|${employee.surname} ${employee.name}|"></h4>
+        <h5>Age: <span th:text="${employee.age}"></span></h5>
+        <h5>Hire date: <span th:text="${employee.hireDate}"></span></h5>
+        <h5>Position: <span th:text="${employee.position.positionName}"></span></h5>
+        <h5>Salary: <span th:text="${employee.salary}"></span></h5>
+        <h5>Department: <span th:text="${employee.department.departmentName}"></span></h5>
+        <h5>Email: <span th:text="${employee.email}"></span></h5>
+        <h5>Phone number: <span th:text="${employee.phoneNumber}"></span></h5>
+        <h5>Manager:
+            <span th:if="${employee.manager == null}">-</span>
+            <span th:unless="${employee.manager == null}">
+                <span th:text="|${employee.manager.surname} ${employee.manager.name}|">
+                </span>
+            </span>
+        </h5><br>
+            <a th:href="@{/update_employee(id=${employee.id})}" class="btn btn-outline-primary me-md-2">
+                Update</a>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+               Delete
+            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Warning</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this employee?
+                            If you click delete, this action <i>cannot be undone</i>.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Cancel</button>
+                            <a th:href="@{/delete_employee(id=${employee.id})}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right50">
+        <h5>Job history:</h5>
+            <table class="table table-primary table-striped table-hover">
+                <thead class="table table-dark">
+                    <tr>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Start-date</th>
+                        <th>End-date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="h:${histories}">
+                        <td th:text="${h.position.positionName}"></td>
+                        <td th:text="${h.department.departmentName}"></td>
+                        <td th:text="${h.startDate}"></td>
+                        <td th:text="${h.endDate} ?: '-'" th:align="center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>
