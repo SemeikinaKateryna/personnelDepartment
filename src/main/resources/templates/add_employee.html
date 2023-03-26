@@ -78,8 +78,8 @@
 
             <div class="col-md-8">
                 <select class="form-select" aria-label="Select manager"
-                        name="empManager">
-                    <option value="-1">No manager</option>
+                        name="empManager" required>
+                    <option selected disabled value="">No manager</option>
                     <option th:each="manager:${managers}" th:value="${manager.id}"
                             th:text="|${manager.surname} ${manager.name}|">
                     </option>

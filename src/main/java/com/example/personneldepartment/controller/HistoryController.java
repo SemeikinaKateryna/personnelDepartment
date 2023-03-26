@@ -31,13 +31,13 @@ public class HistoryController {
         if(!searchHistoryByPosition(param)){
             if(!searchHistoryByDepartment(param)){
                 if(!searchHistoryBySurname(param)){
-                    return "redirect:/histories";
+                    return "/histories";
                 }
             }
         }
         model.addAttribute("parameter", param);
         model.addAttribute("histories", foundedHistories);
-        return "found_histories";
+        return "/histories";
     }
 
     private boolean searchHistoryByPosition(String param){

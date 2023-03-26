@@ -8,6 +8,7 @@ import com.example.personneldepartment.repository.DepartmentRepository;
 import com.example.personneldepartment.repository.EmployeeRepository;
 import com.example.personneldepartment.repository.HistoryRepository;
 import com.example.personneldepartment.repository.PositionRepository;
+import com.example.personneldepartment.util.ManagerComparator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
+
+import static java.util.Collections.reverseOrder;
+import static java.util.Comparator.comparing;
 
 @Controller
 @AllArgsConstructor
@@ -29,21 +32,21 @@ public class EmployeeController {
     private PositionRepository positionRepository;
 
     @GetMapping("/employees")
-    public String employees(Model model){
+    public String employees(Model model) {
         List<Employee> employees = employeeRepository.findAll();
-        model.addAttribute("employees",employees);
+        model.addAttribute("employees", employees);
         return "employees";
     }
 
 
     @GetMapping("/employee")
-    public String employee(@RequestParam int id, Model model){
+    public String employee(@RequestParam int id, Model model) {
         Optional<Employee> foundEmployee = employeeRepository.findById(id);
-        if(foundEmployee.isEmpty()) {
+        if (foundEmployee.isEmpty()) {
             return "employees";
         }
         List<History> historiesByEmployee = historyRepository.findHistoriesByEmployee(foundEmployee.get());
-        model.addAttribute("employee",foundEmployee.get());
+        model.addAttribute("employee", foundEmployee.get());
         model.addAttribute("histories", historiesByEmployee);
         return "employee";
     }
@@ -51,7 +54,7 @@ public class EmployeeController {
     @GetMapping("/employees_by_department")
     public String employeesByDepartment(@RequestParam int id, Model model) {
         Optional<Department> foundDepartment = departmentRepository.findById(id);
-        if(foundDepartment.isEmpty()){
+        if (foundDepartment.isEmpty()) {
             return "departments";
         }
         List<Employee> findedEmployees = employeeRepository.
@@ -62,55 +65,55 @@ public class EmployeeController {
     }
 
     @GetMapping("/searchByManSurname")
-    public String searchEmployeesByManagerSurname(@RequestParam("param") String param, Model model){
+    public String searchEmployeesByManagerSurname(@RequestParam("param") String param, Model model) {
         List<Employee> foundEmps;
         foundEmps = employeeRepository.findAllByManagerSurnameLikeIgnoreCase(param);
-        if(foundEmps.isEmpty()) {
+        if (foundEmps.isEmpty()) {
             return "redirect:/employees";
         }
         model.addAttribute("parameter", param);
-        model.addAttribute("employees",foundEmps);
+        model.addAttribute("employees", foundEmps);
         return "found_employees";
     }
 
     @GetMapping("/searchByCity")
-    public String searchEmployeesByCity(@RequestParam("param") String param, Model model){
+    public String searchEmployeesByCity(@RequestParam("param") String param, Model model) {
         List<Employee> foundEmps;
         foundEmps = employeeRepository.findAllByDepartmentLocationCityLikeIgnoreCase(param);
-        if(foundEmps.isEmpty()) {
+        if (foundEmps.isEmpty()) {
             return "redirect:/employees";
         }
         model.addAttribute("parameter", param);
-        model.addAttribute("employees",foundEmps);
+        model.addAttribute("employees", foundEmps);
         return "found_employees";
     }
 
     @GetMapping("/searchByDepartment")
-    public String searchEmployeesByDepartment(@RequestParam("param") String param, Model model){
+    public String searchEmployeesByDepartment(@RequestParam("param") String param, Model model) {
         List<Employee> foundEmps;
         foundEmps = employeeRepository.findAllByDepartmentDepartmentNameLikeIgnoreCase(param);
-        if(foundEmps.isEmpty()) {
+        if (foundEmps.isEmpty()) {
             return "redirect:/employees";
         }
         model.addAttribute("parameter", param);
-        model.addAttribute("employees",foundEmps);
+        model.addAttribute("employees", foundEmps);
         return "found_employees";
     }
 
     @GetMapping("/searchByPosition")
-    public String searchEmployeesByPosition(@RequestParam("param") String param, Model model){
+    public String searchEmployeesByPosition(@RequestParam("param") String param, Model model) {
         List<Employee> foundEmps;
         foundEmps = employeeRepository.findAllByPositionPositionNameLikeIgnoreCase(param);
-        if(foundEmps.isEmpty()) {
+        if (foundEmps.isEmpty()) {
             return "redirect:/employees";
         }
         model.addAttribute("parameter", param);
-        model.addAttribute("employees",foundEmps);
+        model.addAttribute("employees", foundEmps);
         return "found_employees";
     }
 
     @GetMapping("/add_employee")
-    public String addEmployee(Model model){
+    public String addEmployee(Model model) {
         List<Position> positions = positionRepository.findAll();
         List<Department> departments = departmentRepository.findAll();
         List<Employee> employees = employeeRepository.findAll();
@@ -145,7 +148,7 @@ public class EmployeeController {
                                     @RequestParam int empSalary,
                                     @RequestParam String empEmail,
                                     @RequestParam String empPhone,
-                                    @RequestParam(required = false) int empManager){
+                                    @RequestParam(required = false) int empManager) {
         Employee newEmp = new Employee();
         newEmp.setSurname(empSurname);
         newEmp.setName(empName);
@@ -162,7 +165,7 @@ public class EmployeeController {
         employeeRepository.save(newEmp);
         History history = new History();
         Optional<Employee> employee = employeeRepository.findById(newEmp.getId());
-        if(employee.isPresent()) {
+        if (employee.isPresent()) {
             Employee empHis = employee.get();
             history.setEmployee(empHis);
             history.setStartDate(empHis.getHireDate());
@@ -174,12 +177,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete_employee")
-    public String deleteEmployee(@RequestParam int id){
+    public String deleteEmployee(@RequestParam int id) {
         Optional<Employee> deletedEmployee = employeeRepository.findById(id);
-        if(deletedEmployee.isPresent()) {
+        if (deletedEmployee.isPresent()) {
             List<History> deletedHistory =
                     historyRepository.findHistoriesByEmployee(deletedEmployee.get());
-            for (History h:deletedHistory) {
+            for (History h : deletedHistory) {
                 historyRepository.deleteById(h.getId());
             }
         }
@@ -188,9 +191,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/update_employee")
-    public String updateEmployee(@RequestParam int id, Model model){
+    public String updateEmployee(@RequestParam int id, Model model) {
         Optional<Employee> foundEmployee = employeeRepository.findById(id);
-        if(foundEmployee.isEmpty()){
+        if (foundEmployee.isEmpty()) {
             return "employees";
         }
         model.addAttribute("employee", foundEmployee.get());
@@ -229,10 +232,10 @@ public class EmployeeController {
                                        @RequestParam int empSalary,
                                        @RequestParam String empEmail,
                                        @RequestParam String empPhone,
-                                       @RequestParam(required = false) int empManager){
+                                       @RequestParam(required = false) int empManager) {
         Optional<Employee> employeeFound = employeeRepository.findById(id);
 
-        if(employeeFound.isEmpty()){
+        if (employeeFound.isEmpty()) {
             return "employees";
         }
         Employee employee = employeeFound.get();
@@ -240,7 +243,7 @@ public class EmployeeController {
         employee.setSurname(empSurname);
         employee.setName(empName);
         employee.setAge(empAge);
-        if(!employee.getHireDate().equals(empHireDate)) {
+        if (!employee.getHireDate().equals(empHireDate)) {
             employee.setHireDate(empHireDate);
             int minId = 0;
             for (History history : historiesFound) {
@@ -253,16 +256,15 @@ public class EmployeeController {
 
         Position position = positionRepository.findById(empPosition).get();
         Department department = departmentRepository.findById(empDepartment).get();
-        if(!employee.getPosition().getId().equals(empPosition)
-                || !employee.getDepartment().getId().equals(empDepartment) )
-        {
+        if (!employee.getPosition().getId().equals(empPosition)
+                || !employee.getDepartment().getId().equals(empDepartment)) {
             employee.setPosition(position);
             employee.setDepartment(department);
             History history = new History();
             history.setEmployee(employee);
             history.setStartDate(LocalDate.now());
             for (History h : historiesFound) {
-                if(h.getEndDate() == null){
+                if (h.getEndDate() == null) {
                     h.setEndDate(LocalDate.now());
                 }
             }
@@ -274,12 +276,110 @@ public class EmployeeController {
         employee.setEmail(empEmail);
         employee.setPhoneNumber(empPhone);
         Optional<Employee> manager = employeeRepository.findById(empManager);
-        if(manager.isPresent()){
+        if (manager.isPresent()) {
             employee.setManager(manager.get());
-        }else{
+        } else {
             employee.setManager(null);
         }
         employeeRepository.save(employee);
         return "redirect:/employees";
     }
+
+    @GetMapping("/sortBySurnameAndName")
+    public String sortBySurnameAndName(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(Employee::getSurname)
+                .thenComparing(Employee::getName));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortBySurnameAndNameDesc")
+    public String sortBySurnameAndNameDesc(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(reverseOrder(Comparator.comparing(Employee::getSurname)
+                .thenComparing(Employee::getName)));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByAge")
+    public String sortByAge(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(Employee::getAge));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByAgeDesc")
+    public String sortByAgeDesc(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(reverseOrder(Comparator.comparing(Employee::getAge)));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+    @GetMapping("/sortByPosition")
+    public String sortByPosition(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(a -> a.getPosition().getPositionName()));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByPositionDesc")
+    public String sortByPositionDesc(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(reverseOrder(Comparator.comparing(a -> a.getPosition().getPositionName())));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByDepartment")
+    public String sortByDepartment(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(a -> a.getDepartment().getDepartmentName()));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByDepartmentDesc")
+    public String sortByDepartmentDesc(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(reverseOrder(Comparator.comparing(a -> a.getDepartment().getDepartmentName())));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByManager")
+    public String sortByManager(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(new ManagerComparator());
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByManagerDesc")
+    public String sortByManagerDesc(Model model) {
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(new ManagerComparator().reversed());
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByHireDate")
+    public String sortByHireDate(Model model){
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(Employee::getHireDate));
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
+    @GetMapping("/sortByHireDateDesc")
+    public String sortByHireDateDesc(Model model){
+        List<Employee> all = employeeRepository.findAll();
+        all.sort(comparing(Employee::getHireDate).reversed());
+        model.addAttribute("employees", all);
+        return "employees";
+    }
+
 }

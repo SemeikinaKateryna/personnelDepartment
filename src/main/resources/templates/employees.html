@@ -16,45 +16,155 @@
           </div>
       </div>
       <table class="table table-primary table-striped table-hover">
-          <thead class="table table-dark ">
-              <tr>
+          <thead class="table table-dark">
+              <tr th:align="center">
                   <th>#</th>
-                  <th>Full name</th>
-                  <th>Age</th>
-                  <th>Position</th>
-                  <th>Department</th>
-                  <th>Manager</th>
-                  <th>Hire date</th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                        Full Name
+                      </a>
+                  </th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                        Age
+                      </a>
+                  </th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                          Position
+                      </a>
+                  </th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                          Department
+                      </a>
+                  </th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                          Manager
+                      </a>
+                  </th>
+                  <th colspan="2">
+                      <a style="color: white" href="/employees">
+                          Hire date
+                      </a>
+                  </th>
                   <th>Email</th>
-                  <th>Phone</th>
               </tr>
+          <tr th:align="center">
+              <th></th>
+              <th>
+                  <a style="color: white" href="/sortBySurnameAndName">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortBySurnameAndNameDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByAge">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByAgeDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByPosition">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByPositionDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByDepartment">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByDepartmentDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByManager">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByManagerDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByHireDate">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
+                          <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th>
+                  <a style="color: white" href="/sortByHireDateDesc">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
+                          <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg>
+                  </a>
+              </th>
+              <th></th>
+          </tr>
           </thead>
           <tbody>
-              <tr th:each="employee:${employees}">
+              <tr th:each="employee:${employees}" th:align="center">
                   <td th:text="${employee.id}"></td>
-                  <td>
+                  <td colspan="2">
                       <a th:href="@{/employee(id=${employee.id})}">
                           <span th:text="|${employee.surname} ${employee.name}|"></span>
                       </a>
                   </td>
-                  <td th:text="${employee.age}"></td>
-                  <td th:text="${employee.getPosition.positionName}"></td>
-                  <td>
+                  <td colspan="2" th:text="${employee.age}" th:align="center"></td>
+                  <td colspan="2" th:text="${employee.getPosition.positionName}"></td>
+                  <td colspan="2">
                       <a th:href="@{/department_by_employee(id=${employee.id})}">
                           <span th:text="${employee.getDepartment.departmentName}"></span>
                       </a>
                   </td>
-                  <td>
+                  <td colspan="2">
                       <span th:if="${employee.manager == null}">-</span>
                       <span th:unless="${employee.manager == null}">
                           <a th:href="@{/employee(id=${employee.id})}">
                               <span th:text="|${employee.manager.surname} ${employee.manager.name}|"></span>
                           </a>
                       </span>
-                  </td>
-                  <td th:text="${employee.hireDate}"></td>
+                  </td >
+                  <td colspan="2" th:text="${employee.hireDate}"></td>
                   <td th:text="${employee.email}"></td>
-                  <td th:text="${employee.phoneNumber}"></td>
               </tr>
           </tbody>
       </table>
