@@ -1,8 +1,6 @@
 package com.example.personneldepartment.controller;
 
-import com.example.personneldepartment.entity.Employee;
 import com.example.personneldepartment.entity.History;
-import com.example.personneldepartment.repository.EmployeeRepository;
 import com.example.personneldepartment.repository.HistoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,14 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Class HistoryController is designed for history's requests and some helpful functions
+ */
 
 @AllArgsConstructor
 @Controller
 public class HistoryController {
     private HistoryRepository historyRepository;
-    private EmployeeRepository employeeRepository;
     private List<History> foundedHistories;
     @GetMapping("/histories")
     public String histories(Model model){

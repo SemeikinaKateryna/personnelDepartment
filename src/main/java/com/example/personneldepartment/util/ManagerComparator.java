@@ -4,6 +4,10 @@ import com.example.personneldepartment.entity.Employee;
 
 import java.util.Comparator;
 
+/**
+ * Class ManagerComparator is designed for proper sorting employees by manager's
+ */
+
 public class ManagerComparator implements Comparator<Employee> {
       @Override
       public int compare(Employee m1, Employee m2) {

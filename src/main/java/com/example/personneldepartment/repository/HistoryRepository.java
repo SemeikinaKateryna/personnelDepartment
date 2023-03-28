@@ -6,6 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * Class HistoryRepository is a Spring Data Repository.
+ * Includes additional features for the employee's history search option
+ */
+
 public interface HistoryRepository extends JpaRepository<History, Integer> {
     List<History> findHistoriesByEmployee(Employee employee);
 

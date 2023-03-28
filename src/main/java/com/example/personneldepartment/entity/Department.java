@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Class Department describes database entity Department
+ */
+
 @Getter
 @Setter
 @Entity

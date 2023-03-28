@@ -7,6 +7,10 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Class Location describes database entity Location
+ */
+
 @Getter
 @Setter
 @Entity

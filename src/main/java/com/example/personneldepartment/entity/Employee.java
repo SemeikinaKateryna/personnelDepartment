@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Class Employee describes database entity Employee
+ */
+
 @Getter
 @Setter
 @Entity

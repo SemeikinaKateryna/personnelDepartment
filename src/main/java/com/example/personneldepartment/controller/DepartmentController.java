@@ -19,6 +19,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class DepartmentController is designed for department's (and location's) requests
+ */
+
 @AllArgsConstructor
 @Controller
 public class DepartmentController {

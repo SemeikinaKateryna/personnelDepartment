@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.function.Function;
 
 import static java.util.Collections.reverseOrder;
 import static java.util.Comparator.comparing;
+
+/**
+ * Class EmployeeController is designed for employee's requests
+ */
 
 @Controller
 @AllArgsConstructor

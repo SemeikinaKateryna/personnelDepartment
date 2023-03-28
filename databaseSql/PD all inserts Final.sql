@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `personnelDepartment`.`Location` (
   `country` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `local_address` VARCHAR(45) NOT NULL,
+  `geo_link` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`id_location`))
 ENGINE = InnoDB;
 
@@ -142,11 +143,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `personnelDepartment`;
-INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`) VALUES (1, 'USA', 'South San Francisco', 'Interiors Blvd');
-INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`) VALUES (2, 'Ukraine', 'Kiev', 'Shevchenko St');
-INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`) VALUES (3, 'Ukraine', 'Kiev', 'Ivan Franko St');
-INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`) VALUES (4, 'Ukraine', 'Dnipro', 'Independence St');
-INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`) VALUES (5, 'Ukraine', 'Kharkiv', 'Gagarin Av');
+INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`, `geo_link`) VALUES (1, 'USA', 'South San Francisco', 'Airport Blvd', 'https://goo.gl/maps/DmNBh2ovR6YE2jnE8');
+INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`,`geo_link`) VALUES (2, 'Ukraine', 'Kiev', 'Shevchenko St', 'https://goo.gl/maps/EndZV7tycJgLDVDK9');
+INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`,`geo_link`) VALUES (3, 'Ukraine', 'Kiev', 'Ivan Franko St', 'https://goo.gl/maps/h4Pg6HyxWyMTJkQW7');
+INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`, `geo_link`) VALUES (4, 'Ukraine', 'Dnipro', 'Independence St', 'https://goo.gl/maps/EpqHcEsnQQQHfh7q7');
+INSERT INTO `personnelDepartment`.`Location` (`id_location`, `country`, `city`, `local_address`, `geo_link`) VALUES (5, 'Ukraine', 'Kharkiv', 'Gagarin Av', 'https://goo.gl/maps/Aj4ufAe5iX1VtYAJ8');
 
 COMMIT;
 
@@ -237,86 +238,86 @@ COMMIT ;
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (11, 'Sokolova', 'Sofia', 27, '2020-05-05', 3, 3500, null, 'sokolsofia@gmail.com', '3639542896', 2);
+VALUES (8, 'Sokolova', 'Sofia', 27, '2020-05-05', 3, 3500, null, 'sokolsofia@gmail.com', '3639542896', 2);
 COMMIT ;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
-VALUES (3, 'HR', 11, 3);
+VALUES (3, 'HR', 8, 3);
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 UPDATE `Employee`
 SET id_department = 3
-WHERE id_employee = 11;
+WHERE id_employee = 8;
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (12, 'Tokareva', 'Stephania', 30, '2020-09-07', 6, 3200, 3, 'tok.Step@gmail.com', '8525903254', 11);
+VALUES (9, 'Tokareva', 'Stephania', 30, '2020-09-07', 6, 3200, 3, 'tok.Step@gmail.com', '8525903254', 8);
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (13, 'Maslyakov', 'Misha', 28, '2021-03-01', 12, 3100, 3, 'maslMish@gmail.com', '8997859220', 11);
+VALUES (10, 'Maslyakov', 'Misha', 28, '2021-03-01', 12, 3100, 3, 'maslMish@gmail.com', '8997859220', 8);
 COMMIT ;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (14, 'Shukin', 'Dmitry', 36, '2020-05-05', 3, 3700, null, 'shukinDm@gmail.com', '2916378240', 2);
+VALUES (11, 'Shukin', 'Dmitry', 36, '2020-05-05', 3, 3700, null, 'shukinDm@gmail.com', '2916378240', 2);
 COMMIT ;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
-VALUES (4, 'IT', 14, 4);;
+VALUES (4, 'IT', 11, 4);
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 UPDATE `Employee`
 SET id_department = 4
-WHERE id_employee = 14;
+WHERE id_employee = 11;
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (15, 'Voytilov', 'Evgen', 31, '2020-05-05', 7, 3500, 4, 'voyTevG@gmail.com', '8444619624', 14);
+VALUES (12, 'Voytilov', 'Evgen', 31, '2020-05-05', 7, 3500, 4, 'voyTevG@gmail.com', '8444619624', 11);
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (16, 'Semenko', 'Sergey', 28, '2020-05-05', 9, 3200, 4, 'sergSem@gmail.com ', '2501506083', 14);
+VALUES (13, 'Semenko', 'Sergey', 28, '2020-05-05', 9, 3200, 4, 'sergSem@gmail.com ', '2501506083', 11);
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (17, 'Sereda', 'Anton', 36, '2020-05-05', 10, 3400, 4, 'sereda.Anton@gmail.com', '4888222717', 14);
+VALUES (14, 'Sereda', 'Anton', 36, '2020-05-05', 10, 3400, 4, 'sereda.Anton@gmail.com', '4888222717', 11);
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (18, 'Sereda', 'Alexandra', 28, '2020-05-25', 11, 2800, 4, 'sereda.Alexndra@gmail.com ', '5097589393', 14);
+VALUES (15, 'Sereda', 'Alexandra', 28, '2020-05-25', 11, 2800, 4, 'sereda.Alexndra@gmail.com ', '5097589393', 11);
 COMMIT ;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (19, 'Akinshina', 'Katerina', 35, '2020-06-01', 3, 3400, null, 'akkKaterinaSh@gmail.com', '6189523712', 2);
+VALUES (16, 'Akinshina', 'Katerina', 35, '2020-06-01', 3, 3400, null, 'akkKaterinaSh@gmail.com', '6189523712', 2);
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
-VALUES (5, 'Information Security', 19, 5);
+VALUES (5, 'Information Security', 16, 5);
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 UPDATE `Employee`
 SET id_department = 5
-WHERE id_employee = 19;
+WHERE id_employee = 16;
 COMMIT;
 
 START TRANSACTION;
 USE `personnelDepartment`;
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (20, 'Grabets', 'Oleg', 36, '2020-09-01', 8, 3000, 5, 'oleg_grabts@gmail.com ', '9512614656', 19);
+VALUES (17, 'Grabets', 'Oleg', 36, '2020-09-01', 8, 3000, 5, 'oleg_grabts@gmail.com ', '9512614656', 16);
 INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
-VALUES (21, 'Malinikova', 'Ulyana', 28, '2021-03-01', 8, 2900, 5, 'ulyana.malin@gmail.com', '0398255635', 19);
+VALUES (18, 'Malinikova', 'Ulyana', 28, '2021-03-01', 8, 2900, 5, 'ulyana.malin@gmail.com', '0398255635', 16);
 COMMIT;
 
 -- -----------------------------------------------------
@@ -334,24 +335,19 @@ INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date
 INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (7, 5, '2020-08-03', null, 4, 2);
 INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (8, 6, '2021-01-04', null, 5, 2);
 INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (9, 7, '2020-09-07', null, 12, 2);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (10, 11, '2020-05-05', null, 3, 3);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (11, 12, '2020-09-07', null, 6, 3);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (12, 13, '2021-03-01', '2021-07-05', 6, 3);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (13, 13, '2021-07-05', null, 12, 3);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (14, 14, '2020-05-05', '2021-05-03', 3, 2);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (15, 14, '2021-05-03', null, 3, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (16, 15, '2020-05-05', null, 7, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (17, 16, '2020-05-05', null, 9, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (18, 17, '2020-05-05', null, 10, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (19, 18, '2020-05-25', null, 11, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (20, 19, '2020-06-01', '2021-06-07', 8, 5);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (21, 19, '2021-06-07', null, 3, 5);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (22, 20, '2020-09-01', '2023-03-26', 8, 5);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (23, 21, '2021-03-01', '2023-03-26', 8, 5);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (32, 21, '2023-03-26', '2023-03-26', 12, 5);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (33, 21, '2023-03-26', null, 12, 4);
-INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (34, 20, '2023-03-26', null, 12, 5);
-
-
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (10, 8, '2020-05-05', null, 3, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (11, 9, '2020-09-07', null, 6, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (12, 10, '2021-03-01', '2021-07-05', 6, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (13, 10, '2021-07-05', null, 12, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (14, 11, '2020-05-05', '2021-05-03', 3, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (15, 11, '2021-05-03', null, 3, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (16, 12, '2020-05-05', null, 7, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (17, 13, '2020-05-05', null, 9, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (18, 14, '2020-05-05', null, 10, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (19, 15, '2020-05-25', null, 11, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (20, 16, '2020-06-01', '2021-06-07', 8, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (21, 16, '2021-06-07', null, 3, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (22, 17, '2020-09-01', null, 8, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (23, 18, '2021-03-01', null, 8, 5);
 
 COMMIT;
