@@ -171,3 +171,187 @@ INSERT INTO `personnelDepartment`.`Position` (`id_position`, `position_name`) VA
 INSERT INTO `personnelDepartment`.`Position` (`id_position`, `position_name`) VALUES (12, 'Assistant');
 
 COMMIT;
+
+-- ---------------------------------------------------------------------------------------------
+-- Data for table `personnelDepartment`.`Employee` and table `personnelDepartment`.`Department`
+-- ---------------------------------------------------------------------------------------------
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (1, 'Flatcher', 'Simon', 43, '2020-05-05', 1, 4000, null, 'sFlatcher@gmail.com', '1992894690', null);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location) VALUES (1, 'Main', 1, 1);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+UPDATE `Employee`
+SET id_department = 1
+WHERE id_employee = 1;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (2, 'Tulchinsky', 'Egor', 41, '2020-05-05', 2, 3800, 1, 'tulchinsky@gmail.com', '9763803520', 1);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (3, 'Grigoreva', 'Nina', 38, '2020-07-27', 12, 2900, 1, 'ninaGr@gmail.com', '2662534678', 2);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (4, 'Pushkarev', 'Danil', 36, '2020-07-27', 3, 3500, null, 'dan.push@gmail.com', '2959809139', 2);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
+VALUES (2, 'Management', 4, 2);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+UPDATE `Employee`
+SET id_department = 2
+WHERE id_employee = 4;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (5, 'Solovyova', 'Yaroslava', 33, '2020-08-03', 4, 3300, 2, 'yaroslvAslv@gmail.com', '2145798250', 4);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (6, 'Sinichkina', 'Evgeniya', 28, '2021-01-04', 5, 3400, 2, 'evgeniyaSinch@gmail.com', '0194059338', 4);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (7, 'Danilenko', 'Vlad', 32, '2020-09-07', 12, 2800, 2, 'danilenKovld@gmail.com', '3553462502', 4);
+COMMIT ;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (11, 'Sokolova', 'Sofia', 27, '2020-05-05', 3, 3500, null, 'sokolsofia@gmail.com', '3639542896', 2);
+COMMIT ;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
+VALUES (3, 'HR', 11, 3);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+UPDATE `Employee`
+SET id_department = 3
+WHERE id_employee = 11;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (12, 'Tokareva', 'Stephania', 30, '2020-09-07', 6, 3200, 3, 'tok.Step@gmail.com', '8525903254', 11);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (13, 'Maslyakov', 'Misha', 28, '2021-03-01', 12, 3100, 3, 'maslMish@gmail.com', '8997859220', 11);
+COMMIT ;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (14, 'Shukin', 'Dmitry', 36, '2020-05-05', 3, 3700, null, 'shukinDm@gmail.com', '2916378240', 2);
+COMMIT ;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
+VALUES (4, 'IT', 14, 4);;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+UPDATE `Employee`
+SET id_department = 4
+WHERE id_employee = 14;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (15, 'Voytilov', 'Evgen', 31, '2020-05-05', 7, 3500, 4, 'voyTevG@gmail.com', '8444619624', 14);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (16, 'Semenko', 'Sergey', 28, '2020-05-05', 9, 3200, 4, 'sergSem@gmail.com ', '2501506083', 14);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (17, 'Sereda', 'Anton', 36, '2020-05-05', 10, 3400, 4, 'sereda.Anton@gmail.com', '4888222717', 14);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (18, 'Sereda', 'Alexandra', 28, '2020-05-25', 11, 2800, 4, 'sereda.Alexndra@gmail.com ', '5097589393', 14);
+COMMIT ;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (19, 'Akinshina', 'Katerina', 35, '2020-06-01', 3, 3400, null, 'akkKaterinaSh@gmail.com', '6189523712', 2);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Department` (id_department, department_name, id_manager, id_location)
+VALUES (5, 'Information Security', 19, 5);
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+UPDATE `Employee`
+SET id_department = 5
+WHERE id_employee = 19;
+COMMIT;
+
+START TRANSACTION;
+USE `personnelDepartment`;
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (20, 'Grabets', 'Oleg', 36, '2020-09-01', 8, 3000, 5, 'oleg_grabts@gmail.com ', '9512614656', 19);
+INSERT INTO `personnelDepartment`.`Employee` (id_employee, surname, name, age, hire_date, id_position, salary, id_department, email, phone_number, id_manager)
+VALUES (21, 'Malinikova', 'Ulyana', 28, '2021-03-01', 8, 2900, 5, 'ulyana.malin@gmail.com', '0398255635', 19);
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `personnelDepartment`.`History`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `personnelDepartment`;
+
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (1, 1, '2020-05-05', null, 1, 1);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (2, 2, '2020-05-05', '2020-09-01', 12, 1);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (3, 2, '2020-09-01', null, 2, 1);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (4, 3, '2020-07-27', null, 12, 1);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (5, 4, '2020-07-27', '2020-12-07', 5, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (6, 4, '2021-01-04', null, 3, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (7, 5, '2020-08-03', null, 4, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (8, 6, '2021-01-04', null, 5, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (9, 7, '2020-09-07', null, 12, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (10, 11, '2020-05-05', null, 3, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (11, 12, '2020-09-07', null, 6, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (12, 13, '2021-03-01', '2021-07-05', 6, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (13, 13, '2021-07-05', null, 12, 3);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (14, 14, '2020-05-05', '2021-05-03', 3, 2);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (15, 14, '2021-05-03', null, 3, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (16, 15, '2020-05-05', null, 7, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (17, 16, '2020-05-05', null, 9, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (18, 17, '2020-05-05', null, 10, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (19, 18, '2020-05-25', null, 11, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (20, 19, '2020-06-01', '2021-06-07', 8, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (21, 19, '2021-06-07', null, 3, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (22, 20, '2020-09-01', '2023-03-26', 8, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (23, 21, '2021-03-01', '2023-03-26', 8, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (32, 21, '2023-03-26', '2023-03-26', 12, 5);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (33, 21, '2023-03-26', null, 12, 4);
+INSERT INTO `personnelDepartment`.`History` (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (34, 20, '2023-03-26', null, 12, 5);
+
+
+
+COMMIT;
