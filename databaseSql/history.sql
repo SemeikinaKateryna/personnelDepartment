@@ -19,8 +19,5 @@ INSERT INTO personneldepartment.history (id_history, id_employee, start_date, en
 INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (19, 18, '2020-05-25', null, 11, 4);
 INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (20, 19, '2020-06-01', '2021-06-07', 8, 5);
 INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (21, 19, '2021-06-07', null, 3, 5);
-INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (22, 20, '2020-09-01', '2023-03-26', 8, 5);
-INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (23, 21, '2021-03-01', '2023-03-26', 8, 5);
-INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (32, 21, '2023-03-26', '2023-03-26', 12, 5);
-INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (33, 21, '2023-03-26', null, 12, 4);
-INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (34, 20, '2023-03-26', null, 12, 5);
+INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (22, 20, '2020-09-01', null, 8, 5);
+INSERT INTO personneldepartment.history (id_history, id_employee, start_date, end_date, id_position, id_department) VALUES (23, 21, '2021-03-01', null, 8, 5);
