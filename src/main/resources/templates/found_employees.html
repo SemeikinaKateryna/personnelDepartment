@@ -18,6 +18,7 @@
         <th>Age</th>
         <th>Position</th>
         <th>Department</th>
+        <th>Manager</th>
         <th>Hire date</th>
         <th>Email</th>
         <th>Phone number</th>
@@ -38,6 +39,14 @@
                 <span th:text="${employee.getDepartment.departmentName}"></span>
             </a>
         </td>
+        <td>
+            <span th:if="${employee.manager == null}">-</span>
+            <span th:unless="${employee.manager == null}">
+                          <a th:href="@{/employee(id=${employee.id})}">
+                              <span th:text="|${employee.manager.surname} ${employee.manager.name}|"></span>
+                          </a>
+                      </span>
+        </td >
         <td th:text="${employee.hireDate}"></td>
         <td th:text="${employee.email}"></td>
         <td th:text="${employee.phoneNumber}"></td>
